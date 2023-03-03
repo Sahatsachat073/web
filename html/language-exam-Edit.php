@@ -297,7 +297,7 @@ $result = mysqli_query($mysqli,$query);
                 <div class="col-md-12">
                   <ul class="nav nav-pills flex-column flex-md-row mb-3">
                     <li class="nav-item">
-                      <a class="nav-link " href="language-exam.html"
+                      <a class="nav-link " href="language-exam.php"
                         ><i class="bx bx-user me-1"></i> รายงานผลการสอบAdmin</a
                       >
                     </li>
@@ -332,7 +332,7 @@ $result = mysqli_query($mysqli,$query);
                             }
 
                           ?>
-                      <form action="./process-edit-language-exam.php?id=<?php echo $_GET["id"];?>" method="POST" name="update">
+                      <form action="./process-edit-language-exam.php" method="POST" name="update"  enctype="multipart/form-data">
                         <div class="row">
                           <!-- HTML5 Inputs -->
                           
@@ -344,7 +344,7 @@ $result = mysqli_query($mysqli,$query);
                                   </label>
                                 <div class="col-md-2">
                                     <select name="types" id="types" class="form-select color-dropdown">
-                                      <option value="bg-secondary " selected>-----</option>
+                                      <option value=" " selected>-----</option>
                                       <option value="1 "<?php 
                                       if ($row["types"]=='1') {
                                         echo "selected";
@@ -370,11 +370,11 @@ $result = mysqli_query($mysqli,$query);
                                   <h5>หนังสือรับรองผลสอบ</h5>
                                 </label>
                                 <!-- <div class="col-md-4">
-                                  <input name="certificates" class="form-control" type="text" placeholder="หนังสือรับรองผลสอบ" id="html5-text-input" />
+                                  <input name="certificates" class="form-control" type="text" value="<?php echo $row["certificates"] ?>" id="html5-text-input" />
                                 </div> -->
                                 <div class="col-md-3">
                                   <input name="certificates" class="form-control" type="file" id="formFile" />
-                                  <p>!!!  คลิก <a href="<?php echo $row["certificates"] ?>" target="blank">Read File</a> เพื่อดูไฟล์เก่าก่อนแก้ไข</p>
+                                  <p>!!!  คลิก <a href="fileUpload/<?php echo $row["certificates"] ?>" target="blank">Read File</a> เพื่อดูไฟล์เก่าก่อนแก้ไข</p>
                                 </div>
                                 
                               </div>
@@ -413,7 +413,7 @@ $result = mysqli_query($mysqli,$query);
                                   </label>
                                 <div class="col-md-2">
                                     <select name="result" id="result" class="form-select color-dropdown">
-                                      <option value="bg-secondary " selected>-----</option>
+                                      <option value=" " selected>-----</option>
                                       <option value="2" <?php 
                                       if ($row["result"]=='2') {
                                         echo "selected";

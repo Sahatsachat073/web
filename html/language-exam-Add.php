@@ -321,7 +321,7 @@
                     
                     <hr class="my-0" />
                     <div class="card-body">
-                      <form action="./process-add-language-exam.php" method="POST" enctype="multipart/form-data">
+                      <form action="process-add-language-exam.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
                           <!-- HTML5 Inputs -->
                           

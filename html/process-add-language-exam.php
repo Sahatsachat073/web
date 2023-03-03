@@ -8,20 +8,21 @@ $mysqli = connect();
 <?php 
  $types=$_POST['types'];
  $score = $_POST['score']; 
-//  $Certificates = $_POST['certificates'];    
+  //$Certificates = $_FILES['certificates'];    
  $dates = $_POST['dates'];  
  $term = $_POST['term'];
  $years =$_POST['years'];
  $result =$_POST['result'];
 
  $uploaddir = 'fileUpload/';
-$uploadfile = $uploaddir . basename($_FILES['certificates']['name']);
+ $uploadfiles =$_FILES['certificates']['name'];
+$uploadfile = $_FILES['certificates']['tmp_name'];
 
 echo '<pre>';
-if (move_uploaded_file($_FILES['certificates']['tmp_name'], $uploadfile)) {
-    //echo "File is valid, and was successfully uploaded.\n";
+if (move_uploaded_file($_FILES['certificates']['tmp_name'], 'fileUpload/'.$uploadfiles)) {
+    echo "File is valid, and was successfully uploaded.\n";
 } else {
-   // echo "Possible file upload attack!\n";
+    echo "Possible file upload attack!\n";
 }
 
 //echo 'Here is some more debugging info:';
@@ -31,14 +32,15 @@ print "</pre>";
 
  
 $sql ="INSERT INTO info_result_language_exam (types,score,certificates,dates,
- term,years,result) VALUES ('$types','$score','$uploadfile','$dates','$term','$years','$result')";
+ term,years,result) VALUES ('$types','$score','$uploadfiles','$dates','$term','$years','$result')";
  echo $sql;
 //  $rs = $mysqli->query( $sql );
 if ($mysqli->query($sql)) {
   // echo "seccess";
-  echo '<script>alert("บันทึกการเพิ่มข้อมูลแล้ว");window.location="./language-exam-Add.php";</script>';
+  echo '<script>alert("บันทึกการเพิ่มข้อมูลแล้ว");window.location="./language-exam.php";</script>';
 }
 else {
   echo "error";
   echo '<script>alert("พบข้อผิดพลาด!!")</script>';
 }
+?>

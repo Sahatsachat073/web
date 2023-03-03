@@ -327,12 +327,17 @@ $result = mysqli_query($mysqli,$query);
                                           }elseif ($row["types"]=='2') {
                                             echo "เทียบ";
                                           } ?></td>
-                                          <td class="text-nowrap"><a href="<?php if ($row["certificates"]=="fileUpload/" ) {
-                                            echo "no file";
-                                          }else {
-                                            echo $row["certificates"];
-                                          }
-                                           ?>" target="blank">file</a></td>
+                                          <td class="text-nowrap">
+                                            <?php if ($row["certificates"]==null) {
+                                              
+                                            }elseif ($row["certificates"]=="") { ?>
+                                              <a href="<?php  echo $row["certificates"] ?>" target="blank">file</a>
+                                           <?php } else { ?>
+                                              <a href="fileUpload/<?php  echo $row["certificates"] ?>" target="blank">file</a>
+                                            <?php }?>
+                                                
+                                           
+                                          </td>
                                           <td class="text-nowrap "><?php echo $row["dates"] ?></td>
                                           <td class="text-nowrap"><?php echo $row["term"] ?></td>
                                           <td class="text-nowrap"><?php echo $row["years"] ?></td>
