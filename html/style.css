@@ -1,0 +1,54 @@
+html {
+    font-family:arial;
+    font-size: 18px;
+  }
+  
+  td {
+    border: 1px solid #726E6D;
+    padding: 15px;
+  }
+  
+  thead{
+    font-weight:bold;
+    text-align:center;
+    background: #625D5D;
+    color:white;
+  }
+  
+  table {
+    border-collapse: collapse;
+  }
+  
+  .footer {
+    text-align:right;
+    font-weight:bold;
+  }
+  
+  tbody >tr:nth-child(odd) {
+    background: #D1D0CE;
+  }
+  
+    
+    .column {
+    float:none;
+    width: 50%;
+    }
+
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+    .temp123{
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+    float: inline-start;
+    }
+    .h4 {
+      text-align: center;
+      margin-top: 5%;
+    }
+ 
+    
