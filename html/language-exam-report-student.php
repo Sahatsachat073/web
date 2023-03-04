@@ -297,7 +297,7 @@ $result = mysqli_query($mysqli,$query);
                   <div class="card mb-4">
                     <hr class="my-0" />
                     <div class="card-body">
-                    <?php while($row = $result->fetch_assoc()): ?>
+                    
                         <div class="row">
                           <h3 class="card-header">ผลสอบภาษา</h3>
                                   <div class="table-responsive">
@@ -335,6 +335,7 @@ $result = mysqli_query($mysqli,$query);
                                         </tr>
                                       </thead>
                                       <tbody>
+                                      <?php while($row = $result->fetch_assoc()): ?>
                                         <tr align="center">
                                           <td class="text-nowrap"></td>
                                           <td class="text-nowrap"><?php echo $row["score"] ?></td>
@@ -344,7 +345,13 @@ $result = mysqli_query($mysqli,$query);
                                           }elseif ($row["types"]=='2') {
                                             echo "เทียบ";
                                           } ?></td>
-                                          <td class="text-nowrap"><a href="<?php echo $row["certificates"] ?>" target="blank">file</a></td>
+                                          <td class="text-nowrap"><?php if ($row["certificates"]==null) {
+                                              
+                                            }elseif ($row["certificates"]=="") { ?>
+                                              <a href="<?php  echo $row["certificates"] ?>" target="blank">file</a>
+                                           <?php } else { ?>
+                                              <a href="fileUpload/<?php  echo $row["certificates"] ?>" target="blank">file</a>
+                                            <?php }?></td>
                                           <td class="text-nowrap"><?php echo $row["dates"] ?></td>
                                           <td class="text-nowrap"><?php echo $row["term"] ?></td>
                                           <td class="text-nowrap"><?php echo $row["years"] ?></td>
@@ -357,6 +364,7 @@ $result = mysqli_query($mysqli,$query);
                                           } ?></td>
                                           
                                         </tr>
+                                        <?php endwhile ?>
                                         <!-- <tr>
                                           <td class="text-nowrap">63011320012</td>
                                           <td class="text-nowrap">-</td>
@@ -415,7 +423,7 @@ $result = mysqli_query($mysqli,$query);
                                <!--/ Striped Rows -->
                         </div>
                         
-                        <?php endwhile ?>
+                        
                     </div>
                     <!-- /Account -->
                   </div>

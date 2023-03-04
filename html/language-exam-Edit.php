@@ -57,6 +57,8 @@ $result = mysqli_query($mysqli,$query);
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
+
+    <script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
   </head>
 
   <body>
@@ -67,8 +69,16 @@ $result = mysqli_query($mysqli,$query);
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+          <a href="index.html" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                
+                <img src="../assets/img/logo/logo-icon.png" width="200" height="80">
+                
+              </span>
+              <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                <i class="bx bx-chevron-left bx-sm align-middle"></i>
+              </a>
+              
             </a>
           </div>
 
@@ -374,7 +384,14 @@ $result = mysqli_query($mysqli,$query);
                                 </div> -->
                                 <div class="col-md-3">
                                   <input name="certificates" class="form-control" type="file" id="formFile" />
-                                  <p>!!!  คลิก <a href="fileUpload/<?php echo $row["certificates"] ?>" target="blank">Read File</a> เพื่อดูไฟล์เก่าก่อนแก้ไข</p>
+                                   <?php if ($row['certificates']!="") { ?>
+                                    <p>!!!  คลิก <a href="fileUpload/<?php  echo $row["certificates"] ?>" target="blank">file</a> เพื่อดูไฟล์เก่าก่อนแก้ไข</p>
+                                  <?php }else { 
+                                    
+                                    echo '<script type ="text/JavaScript">';  
+                                    echo 'alert(" ไม่พบไฟล์เดิม !!!! ")';  
+                                    echo '</script>';
+                                   } ?> 
                                 </div>
                                 
                               </div>
@@ -428,7 +445,9 @@ $result = mysqli_query($mysqli,$query);
                               <h3 class="card-header">Skill</h3>
                               <div class="mt-2">
                                 <input type="hidden" name="id" value="<?php echo $row["id"]?>">
-                                <button type="submit" class="btn btn-danger">แก้ไขข้อมูล</button>
+                                <button type="submit" class="btn btn-danger">บันทึกการแก้ไขข้อมูล</button>
+                                <a href="./language-exam.php"><button type="colorss" class="btn btn-secondary herramienta"> กลับ</button></a>
+                                
                                 <!-- <button type="reset" class="btn btn-warning">ล้างข้อมูล</button> -->
                               </div>
 
@@ -495,6 +514,15 @@ $result = mysqli_query($mysqli,$query);
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
- 
+            <script>
+            
+            function logout() {
+                swal(
+                  'เรียบร้อย!',
+                  'คุณได้บันทึกไฟล์แล้ว',
+                  'success'
+                )
+              }
+          </script>
   </body>
 </html>

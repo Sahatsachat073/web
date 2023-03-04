@@ -96,11 +96,21 @@ if($_FILES['certificates']['name']!=""){
   $uploadfiles =$_FILES['certificates']['name'];
   move_uploaded_file($_FILES['certificates']['tmp_name'], 'fileUpload/'.$uploadfiles);
   $sql =" UPDATE  info_result_language_exam SET 
-
 certificates='$uploadfiles'
  WHERE id = '".$_POST["id"]."' " ;
  $objQuery = $mysqli->query($sql);
-}else{
+ if($objQuery)
+ {
+ // echo "Save Done.";
+ echo '<script>alert("บันทึกการแก้ไขแล้ว");window.location="./language-exam.php";</script>';
+ }
+ else
+ {
+ echo "Error Save [".$sql."]";
+ }
+
+}
+else{
   $sql =" UPDATE  info_result_language_exam SET 
 types='$types',
 score='$score',
@@ -109,12 +119,13 @@ dates='$dates',
  years='$years',
  result='$result'
  WHERE id = '".$_POST["id"]."' " ;
-echo $sql;
+  echo $sql;
  $objQuery = $mysqli->query($sql);
+
  if($objQuery)
  {
  // echo "Save Done.";
- //echo '<script>alert("บันทึกการแก้ไขแล้ว");window.location="./language-exam.php";</script>';
+ echo '<script>window.location="./language-exam.php";</script>';
  }
  else
  {
